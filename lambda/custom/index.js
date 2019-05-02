@@ -1,7 +1,7 @@
 'use strict';
 
 const Alexa = require('alexa-sdk');
-const story = 'Escape the Office.html';
+const story = 'オフィスからの脱出.html';
 const TableName = null // story.replace('.html','').replace(/\s/g, "-");
 var $twine = null;
 const linksRegex = /\[\[([^\|\]]*)\|?([^\]]*)\]\]/g;
@@ -34,10 +34,11 @@ module.exports.handler = (event, context, callback) => {
 const handlers = {
   'LaunchRequest': function() {
     console.log(`LaunchRequest`);
+    //前回のデータが残っている場合
     if (this.event.session.attributes['room'] !== undefined) {
       var room = currentRoom(this.event);
-      var speechOutput = `Hello, you were playing before and got to the room called ${room['$']['name']}. Would you like to resume? `;
-      var reprompt = `Say, resume game, or, new game.`;
+      var speechOutput = ``;
+      var reprompt = `続きから開始しますか、それともはじめから開始しますか。`;
       speechOutput = speechOutput + reprompt;
       var cardTitle = `Restart`;
       var cardContent = speechOutput;
@@ -75,7 +76,7 @@ const handlers = {
     if (this.event.session.attributes['room'] === undefined) {
       // you just started so you are in the first room
       this.event.session.attributes['room'] = $twine[0]['$']['pid'];
-      speechOutput = `Welcome to ${story.replace('.html','')}. Lets start your game. `;
+      speechOutput = `ようこそ。それではゲームをスタートします。 `;
     }
 
     var room = currentRoom(this.event);
@@ -95,7 +96,7 @@ const handlers = {
     displayableText = displayableText.replace("&amp;", "and");
     speechOutput = speechOutput + displayableText;
 
-    // create reprompt from links: "You can go north or go south"
+    // create reprompt from links: "北へ進む, 南へ進む,のどれかで答えてください。"
     var reprompt = "";
     linksRegex.lastIndex = 0;
     while ((m = linksRegex.exec(room['_'])) !== null) {
@@ -104,12 +105,15 @@ const handlers = {
       }
       if (reprompt === "") {
         if (!m[1].toLowerCase().startsWith('if you')) {
-          reprompt = "You can";
+          reprompt = "";
         }
       } else {
-        reprompt = `${reprompt} or`;
+        reprompt = `${reprompt} , `;
       }
       reprompt = `${reprompt} ${m[1]}`;
+    }
+    if(reprompt !== ""){
+        reprompt = `${reprompt},のどれかで答えてください。`;
     }
 
     var firstSentence = displayableText.split('.')[0];
@@ -174,8 +178,8 @@ const handlers = {
     this.emit('WhereAmI');
   },
   'AMAZON.HelpIntent': function() {
-    var speechOutput = 'This is the Sample Gamebook Skill. ';
-    var reprompt = 'Say where am I, to hear me speak.';
+    var speechOutput = 'これはSample Gamebook Skillです';
+    var reprompt = '繰り返し説明を聞きたい場合は"もう一度説明して"と話かけて下さい';
     speechOutput = speechOutput + reprompt;
     var cardTitle = 'Help.';
     var cardContent = speechOutput;
@@ -201,9 +205,9 @@ const handlers = {
     this.emit('CompletelyExit');
   },
   'CompletelyExit': function() {
-    var speechOutput = 'Goodbye.';
+    var speechOutput = '';
     if (TableName) {
-      speechOutput = `Your progress has been saved. ${speechOutput}`;
+      speechOutput = `保存されました。 ${speechOutput}`;
     }
     var cardTitle = 'Exit.';
     var cardContent = speechOutput;

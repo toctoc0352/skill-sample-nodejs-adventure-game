@@ -1,0 +1,253 @@
+{
+    "interactionModel": {
+        "languageModel": {
+            "invocationName": "テキストアドベンチャー",
+            "intents": [
+                {
+                    "name": "AMAZON.CancelIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.HelpIntent",
+                    "samples": []
+                },
+                {
+                    "name": "AMAZON.RepeatIntent",
+                    "samples": [
+                        "もう一度",
+                        "もう一度説明して",
+                        "もう一度説明をお願い"
+                    ]
+                },
+                {
+                    "name": "AMAZON.StopIntent",
+                    "samples": []
+                },
+                {
+                    "name": "ResumeGame",
+                    "slots": [],
+                    "samples": [
+                        "ゲーム再開",
+                        "続きから開始",
+                        "続きから"
+                    ]
+                },
+                {
+                    "name": "RestartGame",
+                    "slots": [],
+                    "samples": [
+                        "はじめから",
+                        "はじめから開始"
+                    ]
+                },
+                {
+                    "name": "Go",
+                    "slots": [
+                        {
+                            "name": "direction",
+                            "type": "LIST_OF_DIRECTIONS"
+                        }
+                    ],
+                    "samples": [
+                        "{direction} に行く",
+                        "{direction} に向かって走る",
+                        "{direction} を歩く",
+                        "{direction} を探す",
+                        "{direction} から逃げる",
+                        "{direction} から出る",
+                        "{direction} を使う",
+                        "{direction}"
+                    ]
+                },
+                {
+                    "name": "Page",
+                    "slots": [
+                        {
+                            "name": "number",
+                            "type": "AMAZON.NUMBER"
+                        }
+                    ],
+                    "samples": [
+                        "{number} ページ",
+                        "{number} ページを見る"
+                    ]
+                },
+                {
+                    "name": "Open",
+                    "slots": [],
+                    "samples": [
+                        "開く",
+                        "ドアを開ける"
+                    ]
+                },
+                {
+                    "name": "Lock",
+                    "slots": [],
+                    "samples": [
+                        "ロックする",
+                        "ドアに鍵をかける"
+                    ]
+                },
+                {
+                    "name": "Jump",
+                    "slots": [],
+                    "samples": [
+                        "ジャンプ"
+                    ]
+                },
+                {
+                    "name": "Fight",
+                    "slots": [
+                        {
+                            "name": "npc",
+                            "type": "LIST_OF_NON_PLAYING_CHARACTERS"
+                        }
+                    ],
+                    "samples": [
+                        "戦う",
+                        "{npc} と戦う"
+                    ]
+                },
+                {
+                    "name": "AMAZON.NavigateHomeIntent",
+                    "samples": []
+                }
+            ],
+            "types": [
+                {
+                    "name": "LIST_OF_DIRECTIONS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "北"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "南"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "東"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "西"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "上る"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "下りる"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "中"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "外"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "左"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "右"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "引き返す",
+                                "synonyms": [
+                                    "引き返します"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "進む",
+                                "synonyms": [
+                                    "進みます"
+                                ]
+                            }
+                        },
+                        {
+                            "id": "desk",
+                            "name": {
+                                "value": "机",
+                                "synonyms": [
+                                    "テーブル"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "窓"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "ドア"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "階段"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "エレベータ",
+                                "synonyms": [
+                                    "リフト"
+                                ]
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "廊下"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "一階"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "受付"
+                            }
+                        },
+                        {
+                            "name": {
+                                "value": "地下室"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "LIST_OF_NON_PLAYING_CHARACTERS",
+                    "values": [
+                        {
+                            "name": {
+                                "value": "クモ"
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
